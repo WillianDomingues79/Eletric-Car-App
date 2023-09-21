@@ -6,6 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MainActivity">
 
+
+
     <TextView
         android:id="@+id/title"
         android:layout_width="wrap_content"
@@ -15,10 +17,11 @@
         android:textStyle="bold"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-        android:paddingBottom="22dp"
+
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
          />
+
 
     <TextView
         android:id="@+id/title_car"
@@ -27,129 +30,140 @@
         android:text="Carros"
         android:textSize="22dp"
         android:textStyle="bold"
+        android:paddingBottom="40dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/title_favorite"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
     <TextView
         android:id="@+id/title_favorite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
         android:text="Favoritos"
         android:textSize="22dp"
         android:textStyle="bold"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintTop_toBottomOf="@id/title"
-        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toRightOf="@id/title_car"
-        />
-
-    <ImageView
-        android:id="@+id/image_car"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/eletric_car"
-        app:layout_constraintWidth="300dp"
-        app:layout_constraintHeight="200dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/title_car"
-        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <TextView
-        android:id="@+id/text_price"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/myCard"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Preço"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/text_cost"
-        app:layout_constraintTop_toBottomOf="@id/image_car"
-        />
-
-    <TextView
-        android:id="@+id/text_cost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="R$ 120.000,00"
-        android:textSize="18dp"
-        app:layout_constraintLeft_toRightOf="@id/text_price"
-        app:layout_constraintTop_toBottomOf="@id/image_car"
+        android:layout_height="310dp"
+        android:backgroundTint="@color/material_dynamic_neutral95"
+        android:elevation="16dp"
+        app:cardCornerRadius="20dp"
         app:layout_constraintRight_toRightOf="parent"
-        />
-
-    <TextView
-        android:id="@+id/text_battery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Bateria"
-        android:textStyle="bold"
-        android:textSize="18dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/text_cost"
-        app:layout_constraintTop_toBottomOf="@id/text_price"
-        />
+        app:layout_constraintTop_toBottomOf="@id/title_car">
 
-    <TextView
-        android:id="@+id/text_kwh"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="93,4kwh"
-        android:textSize="18dp"
-        app:layout_constraintLeft_toRightOf="@id/text_price"
-        app:layout_constraintTop_toBottomOf="@id/text_price"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/myConstraint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
 
-    <TextView
-        android:id="@+id/text_power"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Potência"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/text_cost"
-        app:layout_constraintTop_toBottomOf="@id/text_battery"
-        />
+            <ImageView
+                android:id="@+id/image_car"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/eletric_car"
+                app:layout_constraintHeight="200dp"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth="300dp" />
 
-    <TextView
-        android:id="@+id/text_cv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="616cv"
-        android:textSize="18dp"
-        app:layout_constraintLeft_toRightOf="@id/text_price"
-        app:layout_constraintTop_toBottomOf="@id/text_kwh"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+            <TextView
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Preço"
+                android:textSize="18dp"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_car" />
 
-    <TextView
-        android:id="@+id/text_recharge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Recarga"
-        android:textStyle="bold"
-        android:textSize="18dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/text_cost"
-        app:layout_constraintTop_toBottomOf="@id/text_power"
-        />
+            <TextView
+                android:id="@+id/text_cost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 120.000,00"
+                android:textSize="18dp"
+                android:layout_marginRight="16dp"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/image_car" />
 
-    <TextView
-        android:id="@+id/text_min"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="23 min"
-        android:textSize="18dp"
-        app:layout_constraintLeft_toRightOf="@id/text_price"
-        app:layout_constraintTop_toBottomOf="@id/text_cv"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+            <TextView
+                android:id="@+id/text_battery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bateria"
+                android:textSize="18dp"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_price" />
 
+            <TextView
+                android:id="@+id/text_kwh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="93,4kwh"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@id/text_cost"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_price" />
+
+            <TextView
+                android:id="@+id/text_power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Potência"
+                android:textSize="18dp"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_battery" />
+
+            <TextView
+                android:id="@+id/text_cv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="616cv"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@id/text_cost"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_kwh" />
+
+            <TextView
+                android:id="@+id/text_recharge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recarga"
+                android:textSize="18dp"
+                android:layout_marginLeft="16dp"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_power" />
+
+            <TextView
+                android:id="@+id/text_min"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="23 min"
+                android:textSize="18dp"
+                app:layout_constraintStart_toStartOf="@id/text_cost"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/text_cv" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 
     <Button
@@ -160,7 +174,17 @@
         android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text_min"
+        app:layout_constraintTop_toBottomOf="@id/myCard"
+        />
+
+    <ListView
+        android:id="@+id/lv_informations"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/myCard"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btnCalc"
         />
 
 
