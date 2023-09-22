@@ -17,7 +17,6 @@
         android:textStyle="bold"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
-
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
          />
@@ -30,7 +29,7 @@
         android:text="Carros"
         android:textSize="22dp"
         android:textStyle="bold"
-        android:paddingBottom="40dp"
+
         android:layout_marginTop="16dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/title_favorite"
@@ -49,144 +48,39 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/title" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/myCard"
-        android:layout_width="wrap_content"
-        android:layout_height="310dp"
-        android:backgroundTint="@color/material_dynamic_neutral95"
-        android:elevation="16dp"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/title_car">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/myConstraint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            >
-
-            <ImageView
-                android:id="@+id/image_car"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/eletric_car"
-                app:layout_constraintHeight="200dp"
-                app:layout_constraintHorizontal_bias="1.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintWidth="300dp" />
-
-            <TextView
-                android:id="@+id/text_price"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Preço"
-                android:textSize="18dp"
-                android:layout_marginLeft="16dp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_car" />
-
-            <TextView
-                android:id="@+id/text_cost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="R$ 120.000,00"
-                android:textSize="18dp"
-                android:layout_marginRight="16dp"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/image_car" />
-
-            <TextView
-                android:id="@+id/text_battery"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Bateria"
-                android:textSize="18dp"
-                android:layout_marginLeft="16dp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_price" />
-
-            <TextView
-                android:id="@+id/text_kwh"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="93,4kwh"
-                android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@id/text_cost"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_price" />
-
-            <TextView
-                android:id="@+id/text_power"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Potência"
-                android:textSize="18dp"
-                android:layout_marginLeft="16dp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_battery" />
-
-            <TextView
-                android:id="@+id/text_cv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="616cv"
-                android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@id/text_cost"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_kwh" />
-
-            <TextView
-                android:id="@+id/text_recharge"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Recarga"
-                android:textSize="18dp"
-                android:layout_marginLeft="16dp"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_power" />
-
-            <TextView
-                android:id="@+id/text_min"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="23 min"
-                android:textSize="18dp"
-                app:layout_constraintStart_toStartOf="@id/text_cost"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/text_cv" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.cardview.widget.CardView>
 
 
-    <Button
-        android:id="@+id/btnCalc"
+    <!--<ListView
+        android:id="@+id/lv_informations"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ir para o Cálculo"
-        android:layout_marginTop="20dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/myCard"
-        />
-
-    <ListView
-        android:id="@+id/lv_informations"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@id/myCard"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/btnCalc"
-        />
+        />-->
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_informations"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/btnCalc"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_car"
+        tools:listitem="@layout/car_item"/>
+    <Button
+        android:id="@+id/btnCalc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Ir para o Cálculo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+
+        app:layout_constraintVertical_bias="0.877" />
 
 
     <!-- Comentário -->
