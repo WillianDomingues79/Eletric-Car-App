@@ -1,13 +1,20 @@
 package com.example.eletriccarapp.presentation.fragment
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.AsyncTask
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.eletriccarapp.R
 import com.example.eletriccarapp.presentation.CalcularAutonomiaActivity
@@ -15,6 +22,7 @@ import com.example.eletriccarapp.presentation.adapter.CarAdapter
 import com.example.eletriccarapp.presentation.data.CarFactory
 import com.example.eletriccarapp.presentation.domain.Car
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import kotlinx.coroutines.newFixedThreadPoolContext
 import org.json.JSONArray
 import org.json.JSONObject
 import org.json.JSONTokener
@@ -28,6 +36,9 @@ import kotlin.math.log
 class CarrosFragment : Fragment() {
     lateinit var btnCalcular: FloatingActionButton
     lateinit var listaCarros: RecyclerView
+    lateinit var progress: ProgressBar
+    lateinit var noInternetImage: ImageView
+    lateinit var noInternetText: TextView
 
     var carrosArray : ArrayList<Car> = ArrayList()
 
@@ -42,22 +53,43 @@ class CarrosFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        callService()
         setupView(view)
         setupListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (checkForInternet(context)){
+            callService()
+        }else {
+            emptyState()
+        }
+    }
+
+    fun emptyState(){
+        progress.visibility = View.GONE
+        listaCarros.visibility = View.GONE
+        noInternetImage.visibility = View.VISIBLE
+        noInternetText.visibility = View.VISIBLE
     }
 
     fun setupView(view: View) {
         view.apply {
             btnCalcular = view.findViewById(R.id.fab_calcular)
             listaCarros = view.findViewById(R.id.rv_informations)
+            progress = findViewById(R.id.progressBar)
+            noInternetImage = findViewById(R.id.iv_empty_state)
+            noInternetText = findViewById(R.id.tv_no_wifi)
         }
 
     }
 
     fun setupList(){
-        val adapter = CarAdapter(carrosArray)
-        listaCarros.adapter = adapter
+        val carroAdapter = CarAdapter(carrosArray)
+        listaCarros.apply {
+            visibility = View.VISIBLE
+            adapter = carroAdapter
+        }
     }
 
     fun setupListeners(){
@@ -71,12 +103,36 @@ class CarrosFragment : Fragment() {
         MyTask().execute(urlBase)
     }
 
+    fun checkForInternet(context: Context?): Boolean {
+        val connectivityManager =
+            context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            val network = connectivityManager.activeNetwork ?: return false
+
+            val  activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+            return when {
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                else -> false
+            }
+        } else {
+            @Suppress("DEPRECATION")
+            val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkInfo.isConnected
+        }
+    }
+
     //Consumo API
     inner class MyTask : AsyncTask<String, String, String>() {
 
         override fun onPreExecute() {
             super.onPreExecute()
             Log.d("MyTask", "Iniciando...")
+            progress.visibility = View.VISIBLE
         }
         override fun doInBackground(vararg url: String?): String {
             var urlCollection: HttpURLConnection? = null
@@ -145,6 +201,9 @@ class CarrosFragment : Fragment() {
                     carrosArray.add(model)
                     Log.d("Model ->", model.toString())
                 }
+                progress.visibility = View.GONE
+                noInternetImage.visibility = View.GONE
+                noInternetText.visibility = View.GONE
                 setupList()
             }catch (ex: Exception){
                 Log.e("Erro", "Erro ao recuper API")
