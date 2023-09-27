@@ -132,6 +132,9 @@ class CarrosFragment : Fragment() {
             visibility = View.VISIBLE
             adapter = carroAdapter
         }
+        carroAdapter.carItemLister = {
+            car -> val bateria = car.bateria
+        }
     }
 
     fun setupListeners(){
