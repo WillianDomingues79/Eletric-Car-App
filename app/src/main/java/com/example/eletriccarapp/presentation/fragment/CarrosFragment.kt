@@ -1,5 +1,6 @@
 package com.example.eletriccarapp.presentation.fragment
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -23,6 +24,14 @@ import com.example.eletriccarapp.presentation.CalcularAutonomiaActivity
 import com.example.eletriccarapp.presentation.adapter.CarAdapter
 import com.example.eletriccarapp.presentation.data.CarApi
 import com.example.eletriccarapp.presentation.data.CarFactory
+import com.example.eletriccarapp.presentation.data.local.CarRepository
+import com.example.eletriccarapp.presentation.data.local.CarrosContract.CarEntry.COLUMN_NAME_BATERIA
+import com.example.eletriccarapp.presentation.data.local.CarrosContract.CarEntry.COLUMN_NAME_POTENCIA
+import com.example.eletriccarapp.presentation.data.local.CarrosContract.CarEntry.COLUMN_NAME_PRECO
+import com.example.eletriccarapp.presentation.data.local.CarrosContract.CarEntry.COLUMN_NAME_RECARGA
+import com.example.eletriccarapp.presentation.data.local.CarrosContract.CarEntry.COLUMN_NAME_URL_PHOTO
+import com.example.eletriccarapp.presentation.data.local.CarrosContract.CarEntry.TABLE_NAME
+import com.example.eletriccarapp.presentation.data.local.CarsDbHelper
 import com.example.eletriccarapp.presentation.domain.Car
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import kotlinx.coroutines.newFixedThreadPoolContext
@@ -132,8 +141,8 @@ class CarrosFragment : Fragment() {
             visibility = View.VISIBLE
             adapter = carroAdapter
         }
-        carroAdapter.carItemLister = {
-            car -> val bateria = car.bateria
+        carroAdapter.carItemLister = { carro ->
+            val isSaved = CarRepository(requireContext()).saveIfNoExists(carro)
         }
     }
 
@@ -166,6 +175,8 @@ class CarrosFragment : Fragment() {
         }
     }
 
+
+}
     /* SEM USAR RETROFIT - FORMA ANTIGA */
     /*fun callService(){
         val urlBase = "https://igorbag.github.io/cars-api/cars.json"
@@ -256,4 +267,3 @@ class CarrosFragment : Fragment() {
 //            }
 //        }
 //    }
-}
